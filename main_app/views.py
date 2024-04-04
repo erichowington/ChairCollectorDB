@@ -50,25 +50,16 @@ class SightingsDetail(generics.RetrieveUpdateDestroyAPIView):
     chair_id = self.kwargs['chair_id']
     return Sightings.objects.filter(chair_id=chair_id)
   
-class DupeListCreate(generics.ListCreateAPIView):
+class DupeList(generics.ListCreateAPIView):
+  queryset = Dupe.objects.all()
   serializer_class = DupeSerializer
-
-  def get_queryset(self):
-    chair_id = self.kwargs['chair_id']
-    return Dupe.objects.filter(chair_id=chair_id)
-
-  def perform_create(self, serializer):
-    chair_id = self.kwargs['chair_id']
-    chair = Chair.objects.get(id=chair_id)
-    serializer.save(chair=chair)
-    
+  
+  
 class DupeDetail(generics.RetrieveUpdateDestroyAPIView):
+  queryset = Dupe.objects.all()
   serializer_class = DupeSerializer
   lookup_field = 'id'
 
-  def get_queryset(self):
-    chair_id = self.kwargs['chair_id']
-    return Dupe.objects.filter(chair_id=chair_id)
   
 class AddDupeToChair(APIView):
   def post(self, request, chair_id, dupe_id):
