@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Home, ChairList, ChairDetail, SightingsListCreate, SightingsDetail, DupeList, DupeDetail, AddDupeToChair, RemoveDupeFromChair
+from .views import Home, ChairList, ChairDetail, SightingsListCreate, SightingsDetail, DupeList, DupeDetail, AddDupeToChair, RemoveDupeFromChair, CreateUserView, LoginView, VerifyUserView
 
 urlpatterns = [
   path('', Home.as_view(), name='home'),
@@ -11,6 +11,9 @@ urlpatterns = [
   path('dupe/<int:id>/', DupeDetail.as_view(), name='dupe-detail'),
   path('chairs/<int:chair_id>/add_dupe/<int:dupe_id>/', AddDupeToChair.as_view(), name='add-dupe-to-chair'),
   path('chairs/<int:chair_id>/remove_dupe/<int:dupe_id>/', RemoveDupeFromChair.as_view(), name='remove-dupe-from-chair'),
+  path('users/register/', CreateUserView.as_view(), name='register'),
+  path('users/login/', LoginView.as_view(), name='login'),
+  path('users/token/refresh/', VerifyUserView.as_view(), name='token_refresh'),
 
 
 

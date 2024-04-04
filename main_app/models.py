@@ -1,4 +1,6 @@
 from django.db import models
+from datetime import date
+from django.contrib.auth.models import User
 
 LOCATIONS = (
     ('PER', 'Personal'),
@@ -30,6 +32,7 @@ class Chair(models.Model):
     description = models.TextField(max_length=250)
     release = models.IntegerField()
     dupes = models.ManyToManyField(Dupe)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.model
